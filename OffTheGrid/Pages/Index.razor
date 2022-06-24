@@ -1,0 +1,25 @@
+﻿@page "/"
+@using Microsoft.AspNetCore.Components.QuickGrid
+@inject Database Database
+
+<PageTitle>Index</PageTitle>
+
+<h1>Hello, Grid!</h1>
+
+<div class="grid">
+    <QuickGrid Items="@Database.People" 
+               ResizableColumns="true" 
+               Pagination="@Pagination" 
+               Class="table table-fluid">
+        <PropertyColumn Property="@(c => c.Id)" Sortable="true" Align="Align.Right" />
+        <PropertyColumn Property="@(c => c.Name)" Sortable="true" Align="Align.Right" />
+        <PropertyColumn Property="@(c => c.Age)" Sortable="true" Align="Align.Right" />
+        <PropertyColumn Property="@(c => c.Hobby)" Sortable="true" Align="Align.Right" />
+    </QuickGrid>
+</div>
+
+<Paginator Value="@Pagination" />
+
+@code {
+    readonly PaginationState Pagination = new() { ItemsPerPage = 15 };
+}
